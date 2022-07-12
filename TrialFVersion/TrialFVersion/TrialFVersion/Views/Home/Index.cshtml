@@ -1,0 +1,27 @@
+﻿@using TrialFVersion.ViewModel
+@model IndexViewModel
+
+<!DOCTYPE html>
+<html>
+<body>
+    
+    @if(Model.InUse == true)
+    {
+        <p>Your alias is already in use!</p>
+    }
+    else if(Model.Aliaser != null)
+    {
+      <p>Your URL is aliased to @Model.Aliaser.Title and your secret code is @Model.Aliaser.SecretCode.</p>  
+    }
+    
+    <form action="savelink" method="post">
+
+        <label for="Url"> URL</label><br />
+        <input type="url" name="Url" /><br />
+        <label for="Alias">Alias</label><br />
+        <input type="text" name="Alias" /><br />
+        <button type="submit">Submit</button><br />
+    </form>
+    
+</body>
+</html>

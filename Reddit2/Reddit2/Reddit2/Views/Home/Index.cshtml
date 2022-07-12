@@ -1,0 +1,53 @@
+﻿@using Reddit2.Model
+@using Reddit2.ViewModel
+@model IndexViewModel
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Reddit v.2</h1>
+    <a href="http://localhost:5020/submitpost">Submit</a>
+    <a href="http://localhost:5020/registration">Registration</a>
+    <a href="@Url.Action("login")">Login</a>
+    <br />
+    <table style="width:60%" border=3px>
+        <tr>
+            <th>+</th>
+            <th>-</th>
+            <th>Title</th>
+            <th>Url</th>
+            <th>Score</th>
+        </tr>
+        @foreach (var i in @Model.ListOfPosts)
+        {
+            <tr>
+                <td>
+                 <form action="vote" method="post">
+                <input type="number" hidden name="votevalue" value="1">
+                <input type="number" hidden name="postId" value="@i.Id">
+                <button type="submit">+</button></form>
+                </td>
+                <td>
+                 <form action="vote" method="post">
+                <input type="number" hidden name="votevalue" value="-1">
+                <input type="number" hidden name="postId" value="@i.Id">
+                <button type="submit">-</button></form>
+                </td>
+                <td>@i.Title</td>
+                <td>@i.Url</td>
+                <td>@i.Votes.Sum(v=>v.VoteValue)</td>
+            </tr>
+        }
+    </table>
+
+    <h2>Users</h2>
+    @foreach(var j in @Model.ListOfUsers)
+    {
+        <p>@j.UserName</p>
+    }
+
+    <h2>Current User</h2>
+    <h3>@Model.CurrentUser.UserName</h3>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+git restore --staged .
+mv .storage/acount .storage/account
+git add .
+git commit -m "rename acount to account"
+git init ../delivery/
+mv ../delivery/jessica-working-hours.csv ../delivery/drivers
+hean -n -2 ../delivery/drivers/john-working-hours.csv/
